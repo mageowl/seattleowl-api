@@ -1,0 +1,23 @@
+{
+	"name": "seattleowl-api",
+	"version": "1.0.0",
+	"description": "",
+	"type": "module",
+	"main": "index.js",
+	"scripts": {
+		"test": "node index.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/seattleowl/seattleowl-api.git"
+	},
+	"author": "seattleowl",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/seattleowl/seattleowl-api/issues"
+	},
+	"homepage": "https://github.com/seattleowl/seattleowl-api#readme",
+	"dependencies": {
+		"express": "^4.17.1"
+	}
+}

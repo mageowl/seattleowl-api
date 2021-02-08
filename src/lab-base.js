@@ -26,5 +26,3 @@ export class Lab {
 		router.use(`/${subdomain}`, this.instance.app);
 	}
 }
-
-Lab.regester("test");

@@ -1,15 +1,30 @@
 import express from "express";
-import path from "path";
+import { join } from "path";
 import { getDirname } from "./util/dirname.js";
 import { router as labRouter } from "./lab-base.js";
-const __dirname = getDirname(import.meta);
+import fs from "fs-extra";
+const __dirname = join(getDirname(import.meta), "..");
 
 const app = express();
 
-app.use("/assets", express.static("assets"));
+fs.readdir(join(__dirname, "labs")).then((labs) => {
+	labs.forEach((labDir) => {
+		let path = join(__dirname, "labs", labDir);
+		fs.readdir(path).then((repoFiles) => {
+			if (repoFiles.includes("api")) {
+				fs.readFile(join(path, "api/config.json"), "utf-8").then((text) => {
+					let json = JSON.parse(text);
+					import(join(path, "api", json.index));
+				});
+			}
+		});
+	});
+});
+
+app.use("/asset", express.static("assets"));
 
 app.get("/", (_req, res) => {
-	res.sendFile(path.join(__dirname, "../page/index.html"));
+	res.sendFile(join(__dirname, "/page/index.html"));
 });
 
 app.use("/lab", labRouter);

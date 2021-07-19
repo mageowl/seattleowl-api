@@ -7,7 +7,7 @@ router.get("/", (req, res) => {
 	});
 });
 
-export class Lab {
+export class Repo {
 	static instance;
 	app = null;
 

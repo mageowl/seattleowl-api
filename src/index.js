@@ -1,7 +1,7 @@
 import express from "express";
 import { join } from "path";
 import { getDirname } from "./util/dirname.js";
-import { router as labRouter } from "./lab-base.js";
+import { router as repoRouter } from "./repo-base.js";
 import fs from "fs-extra";
 const __dirname = join(getDirname(import.meta), "..");
 
@@ -27,6 +27,6 @@ app.get("/", (_req, res) => {
 	res.sendFile(join(__dirname, "/page/index.html"));
 });
 
-app.use("/lab", labRouter);
+app.use("/repo", repoRouter);
 
 app.listen(process.env.PORT || 5000);
